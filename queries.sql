@@ -23,6 +23,12 @@ SELECT * FROM animals WHERE NOT name='Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.3 AND 17.4;
 
 --Inside a transaction
+-- Inside a transaction update the animals table by setting the species column to unspecified. Verify that change was made. Then roll back the change and verify that species columns went back to the state before transaction.
+BEGIN;
+UPDATE animals SET species='unspecified';
+ROLLBACK;
+
+--Inside a transaction
 BEGIN;
 --Update the animals table by setting the species column to digimon for all animals that have a name ending in mon.
 UPDATE animals SET species='digimon' WHERE upper(name) LIKE '%MON';
