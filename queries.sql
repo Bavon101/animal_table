@@ -139,3 +139,14 @@ SELECT COUNT(V.animal_id) FROM animals A JOIN  visits V  ON A.id=V.animal_id JOI
 --What specialty should Maisy Smith consider getting? Look for the species she gets the most.
 
 SELECT SP.name, COUNT(V.animal_id) AS visit_times FROM visits V JOIN animals A ON V.animal_id=A.id JOIN vets VE ON V.vet_id=VE.id JOIN species SP ON SP.id=A.species_id WHERE VE.name='Maisy Smith' GROUP BY SP.name ORDER BY visit_times DESC LIMIT 1; 
+
+--check exucution time 
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4; --=Execution Time: 1258.138 ms
+
+-- The following queries are taking too much time (1 sec = 1000ms can be considered as too much time for database query). Try them on your machine to confirm it:
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';

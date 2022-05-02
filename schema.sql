@@ -74,3 +74,15 @@ CREATE TABLE specializations(
 	 vet_id INT,
 	 v_date DATE
  );
+
+ -- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+--create an index for visits
+CREATE INDEX vet_ids_asc ON visits(vet_id ASC);
+
+--create owners email index
+CREATE INDEX owners_emails_asc ON owners(email ASC);
+
+--create animals id index
+CREATE INDEX visit_animals_id_asc ON visits(animal_id ASC);

@@ -10,13 +10,19 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Check [queries.sql](./queries.sql) for examples of queries that can be run on a newly created database. **Important note: this file might include queries that make changes in the database (e.g., remove records). Use them responsibly!**
 
 
-## Author
+## Authors
 
-👤 **Author**
+👤 **Akumu Bavon**
 
 - GitHub: [@Bavon101](https://github.com/Bavon101)
 - Twitter: [@akumubavon](https://twitter.com/akumubavon)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/akumu-bavon/)
+
+👤 **Jonathan Sivahera**
+
+- GitHub: [@jssol](https://github.com/jssol)
+- Twitter: [@jsivahera](https://twitter.com/jsivahera)
+- LinkedIn: [jsivahera](https://www.linkedin.com/in/jsivahera/)
 
 ## 🤝 Contributing
 
