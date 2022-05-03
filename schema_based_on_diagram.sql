@@ -40,3 +40,19 @@ CREATE TABLE treatments(
 	type CHAR(255),
 	name CHAR(255)
 );
+
+-- add table relationships
+-- for one-to-many relations
+
+ALTER TABLE medical_histories ADD FOREIGN KEY (patient_id) REFERENCES patients(id);
+ALTER TABLE invoices ADD FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id);
+ALTER TABLE invoice_items ADD FOREIGN KEY (invoice_id) REFERENCES invoices(id);
+ALTER TABLE invoice_items ADD FOREIGN KEY (treatment_id) REFERENCES treatments(id);
+
+-- for many-to-many relations
+
+-- create a "join table" called hospitalizations for the medical_histories and treatments tables
+CREATE TABLE hospitalizations(
+	medical_history_id INT,
+	treatment_id INT
+);
