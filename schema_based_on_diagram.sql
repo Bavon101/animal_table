@@ -9,7 +9,7 @@ CREATE TABLE patients(
 CREATE TABLE medical_histories(
 	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	admitted_at TIME,
-	patient_id INT,
+	patient_id INT FOREIGN KEY REFERENCES patients(id),
 	status CHAR(255)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE invoices(
 	total_amount DECIMAL,
 	generated_at TIME,
 	payed_at TIME,
-	medical_history_id INT
+	medical_history_id INT FOREIGN KEY REFERENCES medical_histories(id)
 );
 
 --create invoice_items
@@ -30,8 +30,8 @@ CREATE TABLE invoice_items(
 	unit_price DECIMAL,
 	quantity INT,
 	total_price DECIMAL,
-	invoice_id INT,
-	treatment_id INT
+	invoice_id INT FOREIGN KEY REFERENCES invoices(id),
+	treatment_id INT FOREIGN KEY REFERENCES treatments(id)
 );
 
 -- create treatments table
@@ -42,17 +42,9 @@ CREATE TABLE treatments(
 );
 
 -- add table relationships
--- for one-to-many relations
-
-ALTER TABLE medical_histories ADD FOREIGN KEY (patient_id) REFERENCES patients(id);
-ALTER TABLE invoices ADD FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id);
-ALTER TABLE invoice_items ADD FOREIGN KEY (invoice_id) REFERENCES invoices(id);
-ALTER TABLE invoice_items ADD FOREIGN KEY (treatment_id) REFERENCES treatments(id);
-
--- for many-to-many relations
 
 -- create a "join table" called hospitalizations for the medical_histories and treatments tables
 CREATE TABLE hospitalizations(
-	medical_history_id INT,
-	treatment_id INT
+	medical_history_id INT FOREIGN KEY REFERENCES medical_histories(id),
+	treatment_id INT FOREIGN KEY REFERENCES treatments(id)
 );
